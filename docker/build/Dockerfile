@@ -3,7 +3,7 @@ FROM node:23-alpine3.20
 LABEL maintainer="andre"
 
 HEALTHCHECK CMD \
-    curl -sf http://localhost:3000/ || exit 1
+    curl -sf http://localhost:5000/ || exit 1
 
 VOLUME [ "/var/nodeapp" ]
 
@@ -16,8 +16,6 @@ WORKDIR /var/nodeapp
 
 COPY app.js .
 RUN chown nodeapp:nodeapp app.js
-
-EXPOSE 3000
 
 ARG VERSION
 ENV VERSION=${VERSION:-1.0.0}

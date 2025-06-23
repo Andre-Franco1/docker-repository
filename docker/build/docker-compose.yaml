@@ -1,0 +1,12 @@
+services:
+  nodeapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VERSION=v1.2.0
+    container_name: nodejs-compose
+    environment:
+      - PORT=5000
+    ports:
+      - "5055:5000"
