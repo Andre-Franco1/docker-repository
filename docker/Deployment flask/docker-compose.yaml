@@ -1,0 +1,23 @@
+version: "3.9"
+    
+services:
+  flaskapp:
+    image: nginx
+    networks:
+      - flaskapp
+    ports:
+      - 5000:5000
+    deploy:
+      replicas: 10
+      update_config:
+        parallelism: 2
+        failure_action: rollback  
+        order: start-first
+
+networks:
+  flaskapp:
+    driver: overlay
+    attachable: true
+    name: flaskapp
+    driver_opts:
+      encrypted: "true"
